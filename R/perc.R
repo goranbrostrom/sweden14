@@ -1,7 +1,19 @@
+#' Calculates a quantile.
+#'
+#' @param value A brobability in percent
+#' @param pop a matrix of population by age and year
+#' @param ages vector of ages to consider
+#'
+#' @return A (vector of) quantile(s)
+#'
+#' @examples
+#' women <- getPop(sex = "females")
+#' perc(50, women)
+
 perc <- function(value, pop, ages = 0:100){
     ## Assuming that 'pop' is a matrix of population by age and year,
     ## with age in rows and years (or other groups) in columns,
-    ## this function calculates the 'value' percentile. 'value' must lie
+    ## this function calculates the 'value' quantile. 'value' must lie
     ## between 0 and 100. Note that the last age class is open, so very high
     ## percentiles will be inaccurate.
 

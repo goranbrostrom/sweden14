@@ -1,3 +1,17 @@
+#' Calculates the percentile of an age distribution
+#'
+#'
+#' @param age The quantile.
+#' @param pop A matrix of population data.
+#' @param below logical, if true the lower tail is calculated.
+#' @param ages A vector of ages to consider.
+#'
+#' @return A (vector of) percentile(s).
+#'
+#' @examples
+#' men <- getPop(sex = "males")
+#' prop(65, men, below = FALSE)
+
 prop <- function(age, pop, below = TRUE, ages = 0:100){
     ## Calculates the proportion of the population below or above
     ## the exact age 'age'.
