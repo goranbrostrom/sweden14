@@ -22,14 +22,11 @@ getPop <- function(sex = c("all", "males", "females"),
         stop("Argument 'sex' has wrong value")
     }
 
-    ##data("deaths")
-    load("../data/pop.rda") # Temporary!!
-
     if (sex == "females") {
         res <- pop$females        
     }else{
         if (sex == "males"){
-            res <- pop$females
+            res <- pop$males
         }else{
             res <- pop$males + pop$females
         }

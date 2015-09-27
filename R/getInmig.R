@@ -1,50 +1,56 @@
-get.inmig <- function(sex = c("all", "males", "females"),
-                      years = c(1997, 2007)){
-    sex <- sex[1]
-    if (!(sex %in% c("all", "males", "females")))
-      stop("Parameter 'sex' has wrong value")
-    if (length(years) == 1) years <- c(years, years)
-    if (length(years) == 2){
-        years <- c(min(years), max(years))
-        if (years[1] < 1997) years[1] <- 1997
-        if (years[2] > 2007) years[2] <- 2007
-        start <- years[1] - 1997 + 1
-        slut <- years[2] - 1997 + 1
-    }else{
-        stop ("years has wrong length (should be 1 or 2)")
-    }
-    ## inmig9707 <- read.csv("inmig9707.csv", sep = ",", header = TRUE)
-    ## inmig9707 <- inmig9707[, -c(1, 2)]
-    ##return(inmig9707)
-    ## for (x in names(inmig9707)) inmig9707[, x] <-
-      ## as.numeric(as.character(inmig9707[, x]))
-    ## names(inmig9707) <- substr(names(inmig9707), 2, 5)
-    ## save(inmig9707, file = "inmig9707.RData")
+#' Extract the net in-migration in Sweden by age, year, and sex.
+#'
+#' @param sex "all", "males", or "females"
+#' @param years years to include, numeric vector.
+#' @param ages ages to include, numeric vector.
+#' @param aggrYear logical, if TRUE aggregate ove years.
+#' @param aggrAge logical, if TRUE aggregate over ages.
+#'
+#' @return A matrix, a vector, or a real number, depending on aggregate level.
+#'
+#' @examples
+#' getInmig()
+#' getInmig(sex = "males", years = 1969:1978, aggrYear = TRUE)
 
-    data(inmig9707)
-    if (sex == "males"){
-        res <- inmig9707[seq(1, NROW(inmig9707), 2),
-                      start:slut,
-                         drop = FALSE]
+getInmig <- function(sex = c("all", "males", "females"),
+                   years = 1969:2014,
+                   ages = 0:100,
+                   aggrYear = FALSE,
+                   aggrAge = FALSE){
+    sex <- sex[1]
+    if (!(sex %in% c("all", "males", "females"))){
+        stop("Argument 'sex' has wrong value")
+    }
+
+    if (sex == "females") {
+        res <- inmig$females        
     }else{
-        if (sex == "females"){
-            res <- inmig9707[seq(2, NROW(inmig9707), 2),
-                             start:slut,
-                             drop = FALSE]
+        if (sex == "males"){
+            res <- inmig$males
         }else{
-            males <- inmig9707[seq(1, NROW(inmig9707), 2),
-                      start:slut,
-                         drop = FALSE]
-            females <- inmig9707[seq(2, NROW(inmig9707), 2),
-                             start:slut,
-                             drop = FALSE]
-            res <- males + females
+            res <- inmig$males + inmig$females
         }
     }
-
-    res <- as.matrix(res)
-    res <- rbind(res, matrix(0, nrow = 5, ncol = (slut - start + 1)))
-    rownames(res) <- as.character(0:105)
-    colnames(res) <- as.character(years[1]:years[2])
+    ## Cut out the age/year selection
+    res <- res[rownames(res) %in% ages,
+               colnames(res) %in% years]
+    if (aggrYear){
+        if (is.matrix(res)){
+            res <- rowSums(res)
+        }else{
+            res <- sum(res)
+        }
+        if (aggrAge){
+            res <- sum(res) # Just a number!
+        }
+    }else if (aggrAge){
+        if (is.matrix(res)){
+            res <- colSums(res)
+        }else{
+            res <- sum(res)
+        }
+    }
+    
     res
 }
+

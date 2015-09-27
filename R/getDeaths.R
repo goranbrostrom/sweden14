@@ -22,14 +22,11 @@ getDeaths <- function(sex = c("all", "males", "females"),
         stop("Argument 'sex' has wrong value")
     }
 
-    ##data("deaths")
-    load("../data/deaths.rda") # Temporary!!
-
     if (sex == "females") {
         res <- deaths$females
     }else{
         if (sex == "males"){
-            res <- deaths$females
+            res <- deaths$males
         }else{
             res <- deaths$males + deaths$females
         }

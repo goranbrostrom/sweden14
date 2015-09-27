@@ -22,14 +22,12 @@ getBirths <- function(sex = c("all", "males", "females"),
         stop("Parameter 'sex' has wrong value")
     }
 
-    ##data("births")
-    load("../data/births.rda") # Temporary!!
 
     if (sex == "females") {
         res <- births$females
     }else{
         if (sex == "males"){
-            res <- births$females
+            res <- births$males
         }else{
             res <- births$males + births$females
         }
