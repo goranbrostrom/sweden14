@@ -6,6 +6,9 @@
 \title{Number of deaths in Sweden 1969-2014}
 \format{A list with two matrices, each with 101 rows (ages 0-100) and
 46 columns (years 1969-2014). Age 100 is in fact 100 and above.}
+\usage{
+data(deaths)
+}
 \description{
 A list containing two matrices, 'males' and 'females'. Each matrix shows the
  number of deaths by age and year
