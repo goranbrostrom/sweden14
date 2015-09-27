@@ -1,8 +1,14 @@
 Package: sweden14
 Type: Package
-Title: What the Package Does (Title Case)
+Title:  Swedish Population Data 2014
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Göran", "Broström", email = "goran.brostrom@umu.se", 
+    role = c("aut", "cre"))
+Description:  A package with population data from Statistics Sweden, 
+    covering the years 1969-2014. Some functions for data extraction, 
+    estimation, and prediction are provided. 
+License: GPL (>= 3)
 LazyData: TRUE
+URL: http://github.com/goranbrostrom/sweden14
+BugReports: http://github.com/goranbrostrom/sweden14/issues
+
