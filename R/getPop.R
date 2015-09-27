@@ -22,8 +22,10 @@ getPop <- function(sex = c("all", "males", "females"),
         stop("Argument 'sex' has wrong value")
     }
 
+    pop <- sweden14::pop
+
     if (sex == "females") {
-        res <- pop$females        
+        res <- pop$females
     }else{
         if (sex == "males"){
             res <- pop$males
@@ -50,7 +52,7 @@ getPop <- function(sex = c("all", "males", "females"),
             res <- sum(res)
         }
     }
-    
+
     res
 }
 

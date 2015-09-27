@@ -23,6 +23,7 @@ getBirths <- function(sex = c("all", "males", "females"),
     }
 
 
+    births <- sweden14::births
     if (sex == "females") {
         res <- births$females
     }else{

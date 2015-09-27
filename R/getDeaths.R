@@ -22,6 +22,8 @@ getDeaths <- function(sex = c("all", "males", "females"),
         stop("Argument 'sex' has wrong value")
     }
 
+    deaths <- sweden14::deaths
+
     if (sex == "females") {
         res <- deaths$females
     }else{

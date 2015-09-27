@@ -22,8 +22,10 @@ getInmig <- function(sex = c("all", "males", "females"),
         stop("Argument 'sex' has wrong value")
     }
 
+    inmig <- sweden14::inmig
+
     if (sex == "females") {
-        res <- inmig$females        
+        res <- inmig$females
     }else{
         if (sex == "males"){
             res <- inmig$males
@@ -50,7 +52,7 @@ getInmig <- function(sex = c("all", "males", "females"),
             res <- sum(res)
         }
     }
-    
+
     res
 }
 
