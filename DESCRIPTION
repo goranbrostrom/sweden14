@@ -9,7 +9,7 @@ Description:  A package with population data from Statistics Sweden,
     covering the years 1969-2014. Some functions for data extraction, 
     estimation, and prediction are provided. 
 License: GPL (>= 3)
-LazyData: TRUE
+LazyData: true
 URL: http://github.com/goranbrostrom/sweden14
 BugReports: http://github.com/goranbrostrom/sweden14/issues
 
